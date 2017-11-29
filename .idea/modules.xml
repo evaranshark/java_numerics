@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Interpolation/Interpolation.iml" filepath="$PROJECT_DIR$/Interpolation/Interpolation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Polynoms/Polynoms.iml" filepath="$PROJECT_DIR$/Polynoms/Polynoms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/math.iml" filepath="$PROJECT_DIR$/.idea/modules/math.iml" />
+    </modules>
+  </component>
+</project>
