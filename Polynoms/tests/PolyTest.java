@@ -3,8 +3,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by evaran on 23.11.2017.
  */
@@ -19,8 +17,7 @@ public class PolyTest {
     }
 
     @Test
-    public void testAddBi()
-    {
+    public void testAddBi() {
         //standart adding
         Poly poly1 = new Poly();
         Poly poly2 = new Poly();
@@ -42,7 +39,7 @@ public class PolyTest {
         expected = new Poly();
         expected.put(3, 3.0);
         res = Poly.add(poly1, poly2);
-        Assert.assertEquals("One power: ",expected, res);
+        Assert.assertEquals("One power: ", expected, res);
 
         //adding w/ zero coeff
         poly1 = new Poly();
@@ -64,9 +61,9 @@ public class PolyTest {
         res = Poly.add(poly1, poly2);
         Assert.assertEquals("Empty argument: ", expected, res);
     }
+
     @Test
-    public void testAddBiArray()
-    {
+    public void testAddBiArray() {
         //standart adding
         Poly poly1 = new Poly();
         Poly poly2 = new Poly();
@@ -94,7 +91,7 @@ public class PolyTest {
         expected = new Poly();
         expected.put(3, 3.0);
         res = Poly.add(polys);
-        Assert.assertEquals("One power: ",expected, res);
+        Assert.assertEquals("One power: ", expected, res);
 
         //adding w/ zero coeff
         poly1 = new Poly();
@@ -124,7 +121,7 @@ public class PolyTest {
     }
 
     @Test
-    public void testMultiplyBi(){
+    public void testMultiplyBi() {
         //standart mult
         Poly poly1 = new Poly();
         Poly poly2 = new Poly();
@@ -166,7 +163,7 @@ public class PolyTest {
     }
 
     @Test
-    public void testAddMany(){
+    public void testAddMany() {
         //standart adding
         Poly poly1 = new Poly();
         Poly poly2 = new Poly();
@@ -192,7 +189,7 @@ public class PolyTest {
         expected = new Poly();
         expected.put(3, 5.0);
         res = Poly.add(poly1, poly2, poly3);
-        Assert.assertEquals("One power: ",expected, res);
+        Assert.assertEquals("One power: ", expected, res);
 
         //adding w/ zero coeff
         poly1 = new Poly();
@@ -223,7 +220,7 @@ public class PolyTest {
     }
 
     @Test
-    public void multiplyMany(){
+    public void multiplyMany() {
         //standart mult
         Poly poly1 = new Poly();
         Poly poly2 = new Poly();

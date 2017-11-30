@@ -4,8 +4,6 @@ import org.junit.Test;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by evaran on 24.11.2017.
  */
