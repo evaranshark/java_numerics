@@ -20,7 +20,7 @@ public class LeGrange {
         };
         Lagrange lg = new Lagrange(Points);
         Poly lgRes = lg.start();
-        System.out.print(Poly.print(lgRes));
+        System.out.print(Poly.toString(lgRes));
         return;
     }
 }

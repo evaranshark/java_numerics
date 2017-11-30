@@ -24,23 +24,35 @@ public class Poly extends HashMap<Integer, Double> {
     /**
      * Addition of number of polynomials.
      *
-     * @param vars Extra arguments
+     * @param args Extra arguments
      * @return Poly
      */
-    public static Poly add(Poly... vars) {
+    public static Poly add(Poly... args) {
         Poly result = new Poly();
-        ArrayList<Poly> args = (ArrayList<Poly>) Arrays.asList(vars);
-        result = add(args);
+        ArrayList<Poly> summands = (ArrayList<Poly>) Arrays.asList(args);
+        result = add(summands);
         return result;
     }
 
-    public static Poly multiply(Poly... vars) {
+    /**
+     * Multiplying of number of polynomials.
+     *
+     * @param args List of polynomials to multiply.
+     * @return Poly
+     */
+    public static Poly multiply(Poly... args) {
         Poly result = new Poly();
-        ArrayList<Poly> args = (ArrayList<Poly>) Arrays.asList(vars);
-        result = multiply(args);
+        ArrayList<Poly> factors = (ArrayList<Poly>) Arrays.asList(args);
+        result = multiply(factors);
         return result;
     }
 
+    /**
+     * Addition of number of polynomials sent in ArrayList.
+     *
+     * @param args List of polynomials to add up.
+     * @return Poly
+     */
     public static Poly add(ArrayList<Poly> args) {
         Poly result = new Poly();
         Double currValue;
@@ -62,6 +74,12 @@ public class Poly extends HashMap<Integer, Double> {
         return result;
     }
 
+    /**
+     * Multiplying of number of polynomials sent in ArrayList.
+     *
+     * @param args List of polynomials to multiply.
+     * @return Poly
+     */
     public static Poly multiply(ArrayList<Poly> args) {
         Poly result = new Poly();
         Queue<Poly> factorsQueue = new ArrayDeque<>();
@@ -94,7 +112,7 @@ public class Poly extends HashMap<Integer, Double> {
         return result;
     }
 
-    public static String print(Poly arg) {
+    public static String toString(Poly arg) {
         String result = "";
         for (Entry entry : arg.entrySet()) {
             result += elemString(entry);

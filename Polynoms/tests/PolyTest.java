@@ -11,7 +11,7 @@ public class PolyTest {
     public void print() throws Exception {
         Poly poly1 = new Poly();
         poly1.put(1, 1.0);
-        String result = Poly.print(poly1);
+        String result = Poly.toString(poly1);
         String expected = "1=1.0\n";
         Assert.assertEquals(expected, result);
     }
