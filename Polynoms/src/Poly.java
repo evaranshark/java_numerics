@@ -44,15 +44,19 @@ public class Poly extends HashMap<Integer, Double> {
     public static Poly add(ArrayList<Poly> vars) {
         Poly result = new Poly();
         Double currValue;
+        Integer entryKey;
+        Double entryValue;
         for (Poly poly : vars)
             for (Entry entry : poly.entrySet()) {
-                currValue = result.putIfAbsent((Integer) entry.getKey(), (Double) entry.getValue());
+                entryKey = (Integer) entry.getKey();
+                entryValue = (Double) entry.getValue();
+                currValue = result.putIfAbsent(entryKey, entryValue);
                 if (currValue != null) {
-                    currValue += (Double) entry.getValue();
+                    currValue += entryValue;
                     if (currValue == 0.0)
-                        result.remove(entry.getKey());
+                        result.remove(entryKey);
                     else
-                        result.put((Integer) entry.getKey(), currValue);
+                        result.put(entryKey, currValue);
                 }
             }
         return result;
@@ -65,7 +69,7 @@ public class Poly extends HashMap<Integer, Double> {
             polyQueue.offer(p);
         Poly leftArg, rightArg;
         int pow;
-        Double coef, exCoef;
+        Double coef, exCoef; // exCoef presents coefficient for power that already exsists in result
         while (polyQueue.size() != 1) {
             result.clear();
             leftArg = polyQueue.poll();

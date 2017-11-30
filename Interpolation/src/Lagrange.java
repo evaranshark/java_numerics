@@ -53,7 +53,7 @@ public class Lagrange {
                     }
                 lagrangian.divideBy(denom / nom);
 
-                lagrangians.add(lagrangian.clone());
+                lagrangians.add(lagrangian);//clone?
                 //Конец блока
                 return null;
             });
