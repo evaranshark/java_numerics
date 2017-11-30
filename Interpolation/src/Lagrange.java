@@ -8,12 +8,29 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by evaran on 23.11.2017.
+ * Represents Lagrange interpolation. Uses multithreading.
+ * Default number of threads is 4. You can set custom number of threads while initializing with specified constructor.
+ * Note that recommended value for best performance is (number_of_cores) + 1.
+ *
  */
 public class Lagrange {
     ArrayList<Point2D.Double> Points;
+    private int threads = 4;
 
+    /**
+     * Default constructor
+     */
     Lagrange() {
         Points = null;
+    }
+
+    /**
+     * Custom threads constructor.
+     * @param threads Number of threads to compute.
+     */
+    Lagrange(int threads) {
+        Points = null;
+        this.threads = threads;
     }
 
     Lagrange(ArrayList<Point2D.Double> points) {
@@ -21,23 +38,23 @@ public class Lagrange {
     }
 
     /**
-     * Start computing polynome.
+     * Start computing polynomial.
      *
      * @return Poly
      */
     public Poly start() {
         Poly result = new Poly();
-        ArrayList<Poly> monomials = new ArrayList<>();
+        ArrayList<Poly> monomialsList = new ArrayList<>();
         for (Point2D.Double point : Points)
-            monomials.add(Poly.mono(point.x));
-        ExecutorService pool;
-        List lagrangians = Collections.synchronizedList(new ArrayList<Poly>());
+            monomialsList.add(Poly.mono(point.x));
+        ExecutorService threadPool;
+        List summandsList = Collections.synchronizedList(new ArrayList<Poly>());
         ArrayList<Callable<Object>> tasks = new ArrayList<>();
-        pool = Executors.newFixedThreadPool(4);
-        for (Poly monomial : monomials) {
+        threadPool = Executors.newFixedThreadPool(threads);
+        for (Poly monomial : monomialsList) {
             tasks.add(() -> {
                 //Начало блока вычисления младших полиномов
-                ArrayList<Poly> otherMonomials = (ArrayList<Poly>) monomials.clone();
+                ArrayList<Poly> otherMonomials = (ArrayList<Poly>) monomialsList.clone();
                 otherMonomials.remove(monomial);
                 Poly lagrangian = new Poly();
                 lagrangian = Poly.multiply(otherMonomials);
@@ -53,22 +70,22 @@ public class Lagrange {
                     }
                 lagrangian.divideBy(denom / nom);
 
-                lagrangians.add(lagrangian);//clone?
+                summandsList.add(lagrangian);
                 //Конец блока
                 return null;
             });
         }
         try {
-            pool.invokeAll(tasks);
-            pool.shutdown();
+            threadPool.invokeAll(tasks);
+            threadPool.shutdown();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         ArrayList<Poly> lagrangiansDesync = new ArrayList<Poly>();
-        for (Object v : lagrangians)
+        for (Object v : summandsList)
             lagrangiansDesync.add((Poly) v);
         result = Poly.add(lagrangiansDesync);
-        lagrangians.clear();
+        summandsList.clear();
 
         return (Poly) result.clone();
     }

@@ -41,12 +41,12 @@ public class Poly extends HashMap<Integer, Double> {
         return result;
     }
 
-    public static Poly add(ArrayList<Poly> vars) {
+    public static Poly add(ArrayList<Poly> args) {
         Poly result = new Poly();
         Double currValue;
         Integer entryKey;
         Double entryValue;
-        for (Poly poly : vars)
+        for (Poly poly : args)
             for (Entry entry : poly.entrySet()) {
                 entryKey = (Integer) entry.getKey();
                 entryValue = (Double) entry.getValue();
@@ -62,18 +62,18 @@ public class Poly extends HashMap<Integer, Double> {
         return result;
     }
 
-    public static Poly multiply(ArrayList<Poly> vars) {
+    public static Poly multiply(ArrayList<Poly> args) {
         Poly result = new Poly();
-        Queue<Poly> polyQueue = new ArrayDeque<>();
-        for (Poly p : vars)
-            polyQueue.offer(p);
+        Queue<Poly> factorsQueue = new ArrayDeque<>();
+        for (Poly p : args)
+            factorsQueue.offer(p);
         Poly leftArg, rightArg;
         int pow;
         Double coef, exCoef; // exCoef presents coefficient for power that already exsists in result
-        while (polyQueue.size() != 1) {
+        while (factorsQueue.size() != 1) {
             result.clear();
-            leftArg = polyQueue.poll();
-            rightArg = polyQueue.poll();
+            leftArg = factorsQueue.poll();
+            rightArg = factorsQueue.poll();
             for (Entry lEntry : leftArg.entrySet())
                 for (Entry rEntry : rightArg.entrySet()) {
                     pow = (Integer) lEntry.getKey() + (Integer) rEntry.getKey();
@@ -88,9 +88,9 @@ public class Poly extends HashMap<Integer, Double> {
                             result.put(pow, exCoef);
                     }
                 }
-            polyQueue.add((Poly) result.clone());
+            factorsQueue.add((Poly) result.clone());
         }
-        result = polyQueue.poll();
+        result = factorsQueue.poll();
         return result;
     }
 
