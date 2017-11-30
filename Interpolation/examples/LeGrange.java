@@ -1,5 +1,3 @@
-import org.junit.Assert;
-
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -8,7 +6,7 @@ import java.util.ArrayList;
  */
 public class LeGrange {
     public static void main(String[] args) {
-        ArrayList<Point2D.Double> Points = new ArrayList<Point2D.Double>(){
+        ArrayList<Point2D.Double> Points = new ArrayList<Point2D.Double>() {
             {
                 add(new Point2D.Double(1.0, 5.0));
                 add(new Point2D.Double(3.0, 5.0));
@@ -18,7 +16,8 @@ public class LeGrange {
                 add(new Point2D.Double(9.0, 5.0));
                 //add(new Point2D.Double(10.0, 9.0));
                 add(new Point2D.Double(15.0, 11.0));
-            }};
+            }
+        };
         Lagrange lg = new Lagrange(Points);
         Poly lgRes = lg.start();
         System.out.print(Poly.print(lgRes));

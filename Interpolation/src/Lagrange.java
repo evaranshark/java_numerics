@@ -1,10 +1,10 @@
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Collections;
-import java.util.LinkedList;
-import java.util.concurrent.*;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by evaran on 23.11.2017.
@@ -15,12 +15,14 @@ public class Lagrange {
     Lagrange() {
         Points = null;
     }
+
     Lagrange(ArrayList<Point2D.Double> points) {
         Points = points;
     }
 
     /**
      * Start computing polynome.
+     *
      * @return Poly
      */
     public Poly start() {
@@ -30,13 +32,12 @@ public class Lagrange {
             monomials.add(Poly.mono(point.x));
         ExecutorService pool;
         List lagrangians = Collections.synchronizedList(new ArrayList<Poly>());
-        ArrayList<Callable<Object>> tasks = new ArrayList();
+        ArrayList<Callable<Object>> tasks = new ArrayList<>();
         pool = Executors.newFixedThreadPool(4);
-        for (Poly monomial : monomials)
-        {
-            tasks.add(()->{
+        for (Poly monomial : monomials) {
+            tasks.add(() -> {
                 //Начало блока вычисления младших полиномов
-                ArrayList<Poly> otherMonomials = (ArrayList)monomials.clone();
+                ArrayList<Poly> otherMonomials = (ArrayList<Poly>) monomials.clone();
                 otherMonomials.remove(monomial);
                 Poly lagrangian = new Poly();
                 lagrangian = Poly.multiply(otherMonomials);
@@ -50,9 +51,9 @@ public class Lagrange {
                         nom = point.y;
                         break;
                     }
-                lagrangian.divideBy(denom/nom);
+                lagrangian.divideBy(denom / nom);
 
-                lagrangians.add((Poly)lagrangian.clone());
+                lagrangians.add((Poly) lagrangian.clone());
                 //Конец блока
                 return null;
             });
@@ -65,10 +66,10 @@ public class Lagrange {
         }
         ArrayList<Poly> lagrangiansDesync = new ArrayList();
         for (Object v : lagrangians)
-            lagrangiansDesync.add((Poly)v);
+            lagrangiansDesync.add((Poly) v);
         result = Poly.add(lagrangiansDesync);
         lagrangians.clear();
 
-        return (Poly)result.clone();
+        return (Poly) result.clone();
     }
 }

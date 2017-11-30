@@ -13,6 +13,7 @@ public class Poly extends HashMap<Integer, Double> {
 
     /**
      * Creates monome (x - coeff).
+     *
      * @param coeff Bias of monome
      * @return Poly
      */
@@ -25,21 +26,21 @@ public class Poly extends HashMap<Integer, Double> {
 
     /**
      * Addition of number of polynomials.
+     *
      * @param left First argument of addition
      * @param vars Extra arguments
-     * @return
+     * @return Poly
      */
-    public static Poly add(Poly left, Poly ... vars){
+    public static Poly add(Poly left, Poly... vars) {
         Poly result = new Poly();
-        result = (Poly)left.clone();
+        result = (Poly) left.clone();
         if (vars.length == 0)
             return result;
         Double currValue;
         for (Poly poly : vars)
             for (Entry entry : poly.entrySet()) {
                 currValue = result.putIfAbsent((Integer) entry.getKey(), (Double) entry.getValue());
-                if (currValue != null)
-                {
+                if (currValue != null) {
                     currValue += (Double) entry.getValue();
                     if (currValue == 0.0)
                         result.remove(entry.getKey());
@@ -50,26 +51,24 @@ public class Poly extends HashMap<Integer, Double> {
         return result;
     }
 
-    public static Poly multiply(Poly left, Poly ... vars){
+    public static Poly multiply(Poly left, Poly... vars) {
         Poly result = new Poly();
         Queue<Poly> polyQueue = new ArrayDeque<>();
         polyQueue.add(left);
-        for (int i=0; i< vars.length; i++)
-            polyQueue.offer(vars[i]);
+        for (Poly var : vars)
+            polyQueue.offer(var);
         Poly leftArg, rightArg;
         int pow;
         Double coef, exCoef;
-        while (polyQueue.size() != 1)
-        {
+        while (polyQueue.size() != 1) {
             result.clear();
             leftArg = polyQueue.poll();
             rightArg = polyQueue.poll();
             for (Entry lEntry : leftArg.entrySet())
-                for (Entry rEntry : rightArg.entrySet())
-                {
+                for (Entry rEntry : rightArg.entrySet()) {
                     //TODO Проверить работу
-                    pow = (Integer)lEntry.getKey()+(Integer)rEntry.getKey();
-                    coef = (Double)lEntry.getValue()*(Double)rEntry.getValue();
+                    pow = (Integer) lEntry.getKey() + (Integer) rEntry.getKey();
+                    coef = (Double) lEntry.getValue() * (Double) rEntry.getValue();
                     exCoef = result.putIfAbsent(pow, coef);
                     if (exCoef == null) exCoef = 0.0;
                     {
@@ -80,21 +79,20 @@ public class Poly extends HashMap<Integer, Double> {
                             result.put(pow, exCoef);
                     }
                 }
-            polyQueue.add((Poly)result.clone());
+            polyQueue.add((Poly) result.clone());
         }
         result = polyQueue.poll();
         polyQueue.clear();
         return result;
     }
 
-    public static Poly add(ArrayList<Poly> vars){
+    public static Poly add(ArrayList<Poly> vars) {
         Poly result = new Poly();
         Double currValue;
         for (Poly poly : vars)
             for (Entry entry : poly.entrySet()) {
                 currValue = result.putIfAbsent((Integer) entry.getKey(), (Double) entry.getValue());
-                if (currValue != null)
-                {
+                if (currValue != null) {
                     currValue += (Double) entry.getValue();
                     if (currValue == 0.0)
                         result.remove(entry.getKey());
@@ -105,7 +103,7 @@ public class Poly extends HashMap<Integer, Double> {
         return result;
     }
 
-    public static Poly multiply(ArrayList<Poly> vars){
+    public static Poly multiply(ArrayList<Poly> vars) {
         Poly result = new Poly();
         Queue<Poly> polyQueue = new ArrayDeque<>();
         for (Poly p : vars)
@@ -113,17 +111,15 @@ public class Poly extends HashMap<Integer, Double> {
         Poly leftArg, rightArg;
         int pow;
         Double coef, exCoef;
-        while (polyQueue.size() != 1)
-        {
+        while (polyQueue.size() != 1) {
             result.clear();
             leftArg = polyQueue.poll();
             rightArg = polyQueue.poll();
             for (Entry lEntry : leftArg.entrySet())
-                for (Entry rEntry : rightArg.entrySet())
-                {
+                for (Entry rEntry : rightArg.entrySet()) {
                     //TODO Проверить работу
-                    pow = (Integer)lEntry.getKey()+(Integer)rEntry.getKey();
-                    coef = (Double)lEntry.getValue()*(Double)rEntry.getValue();
+                    pow = (Integer) lEntry.getKey() + (Integer) rEntry.getKey();
+                    coef = (Double) lEntry.getValue() * (Double) rEntry.getValue();
                     exCoef = result.putIfAbsent(pow, coef);
                     if (exCoef == null) exCoef = 0.0;
                     {
@@ -134,21 +130,21 @@ public class Poly extends HashMap<Integer, Double> {
                             result.put(pow, exCoef);
                     }
                 }
-            polyQueue.add((Poly)result.clone());
+            polyQueue.add((Poly) result.clone());
         }
         result = polyQueue.poll();
-        return (Poly)result.clone();
+        return (Poly) result.clone();
     }
 
     public static String print(Poly arg) {
         String result = "";
-        for (Entry entry : arg.entrySet())
-        {
-            result+=elemString(entry);
+        for (Entry entry : arg.entrySet()) {
+            result += elemString(entry);
         }
         result += '\n';
         return result;
     }
+
     private static String elemString(Entry entry) {
         String result = "";
         result += String.format("%+.3f*x^%d", entry.getValue(), entry.getKey());
@@ -156,9 +152,8 @@ public class Poly extends HashMap<Integer, Double> {
     }
 
     public Poly divideBy(double value) {
-        for (Entry entry : this.entrySet())
-        {
-            entry.setValue((double)entry.getValue()/value);
+        for (Entry entry : this.entrySet()) {
+            entry.setValue((double) entry.getValue() / value);
         }
         return this;
     }
