@@ -7,10 +7,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by evaran on 23.11.2017.
- * Represents Lagrange interpolation. Uses multithreading.
- * Default number of threads is 4. You can set custom number of threads while initializing with specified constructor.
- * Note that recommended value for best performance is (number_of_cores) + 1.
+ * Represents Lagrange interpolation. <br>
+ * Uses multithreading. Default number of threads is 4. <br>
+ * You can set custom number of threads while initializing with specified constructor. <br>
+ * Note that recommended value for best performance is (number_of_cores + 1).
+ * @author evaran
  *
  */
 public class Lagrange {

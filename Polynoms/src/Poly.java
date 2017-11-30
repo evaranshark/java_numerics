@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * Created by evaran on 23.11.2017.
+ * @author evaran
  */
 public class Poly extends HashMap<Integer, Double> {
     public Poly() {
