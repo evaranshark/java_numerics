@@ -53,7 +53,7 @@ public class Lagrange {
                     }
                 lagrangian.divideBy(denom / nom);
 
-                lagrangians.add((Poly) lagrangian.clone());
+                lagrangians.add(lagrangian.clone());
                 //Конец блока
                 return null;
             });
@@ -64,7 +64,7 @@ public class Lagrange {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        ArrayList<Poly> lagrangiansDesync = new ArrayList();
+        ArrayList<Poly> lagrangiansDesync = new ArrayList<Poly>();
         for (Object v : lagrangians)
             lagrangiansDesync.add((Poly) v);
         result = Poly.add(lagrangiansDesync);

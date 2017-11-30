@@ -1,7 +1,4 @@
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created by evaran on 23.11.2017.
@@ -27,62 +24,20 @@ public class Poly extends HashMap<Integer, Double> {
     /**
      * Addition of number of polynomials.
      *
-     * @param left First argument of addition
      * @param vars Extra arguments
      * @return Poly
      */
-    public static Poly add(Poly left, Poly... vars) {
+    public static Poly add(Poly... vars) {
         Poly result = new Poly();
-        result = (Poly) left.clone();
-        if (vars.length == 0)
-            return result;
-        Double currValue;
-        for (Poly poly : vars)
-            for (Entry entry : poly.entrySet()) {
-                currValue = result.putIfAbsent((Integer) entry.getKey(), (Double) entry.getValue());
-                if (currValue != null) {
-                    currValue += (Double) entry.getValue();
-                    if (currValue == 0.0)
-                        result.remove(entry.getKey());
-                    else
-                        result.put((Integer) entry.getKey(), currValue);
-                }
-            }
+        ArrayList<Poly> args = (ArrayList<Poly>) Arrays.asList(vars);
+        result = add(args);
         return result;
     }
 
-    public static Poly multiply(Poly left, Poly... vars) {
+    public static Poly multiply(Poly... vars) {
         Poly result = new Poly();
-        Queue<Poly> polyQueue = new ArrayDeque<>();
-        polyQueue.add(left);
-        for (Poly var : vars)
-            polyQueue.offer(var);
-        Poly leftArg, rightArg;
-        int pow;
-        Double coef, exCoef;
-        while (polyQueue.size() != 1) {
-            result.clear();
-            leftArg = polyQueue.poll();
-            rightArg = polyQueue.poll();
-            for (Entry lEntry : leftArg.entrySet())
-                for (Entry rEntry : rightArg.entrySet()) {
-                    //TODO Проверить работу
-                    pow = (Integer) lEntry.getKey() + (Integer) rEntry.getKey();
-                    coef = (Double) lEntry.getValue() * (Double) rEntry.getValue();
-                    exCoef = result.putIfAbsent(pow, coef);
-                    if (exCoef == null) exCoef = 0.0;
-                    {
-                        exCoef += coef;
-                        if (exCoef == 0.0)
-                            result.remove(pow);
-                        else
-                            result.put(pow, exCoef);
-                    }
-                }
-            polyQueue.add((Poly) result.clone());
-        }
-        result = polyQueue.poll();
-        polyQueue.clear();
+        ArrayList<Poly> args = (ArrayList<Poly>) Arrays.asList(vars);
+        result = multiply(args);
         return result;
     }
 
@@ -117,7 +72,6 @@ public class Poly extends HashMap<Integer, Double> {
             rightArg = polyQueue.poll();
             for (Entry lEntry : leftArg.entrySet())
                 for (Entry rEntry : rightArg.entrySet()) {
-                    //TODO Проверить работу
                     pow = (Integer) lEntry.getKey() + (Integer) rEntry.getKey();
                     coef = (Double) lEntry.getValue() * (Double) rEntry.getValue();
                     exCoef = result.putIfAbsent(pow, coef);
@@ -133,7 +87,7 @@ public class Poly extends HashMap<Integer, Double> {
             polyQueue.add((Poly) result.clone());
         }
         result = polyQueue.poll();
-        return (Poly) result.clone();
+        return result;
     }
 
     public static String print(Poly arg) {
