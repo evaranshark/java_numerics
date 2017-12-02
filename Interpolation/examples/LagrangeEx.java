@@ -4,7 +4,7 @@ import java.util.ArrayList;
 /**
  * Created by evaran on 24.11.2017.
  */
-public class LeGrange {
+public class LagrangeEx {
     public static void main(String[] args) {
         ArrayList<Point2D.Double> Points = new ArrayList<Point2D.Double>() {
             {

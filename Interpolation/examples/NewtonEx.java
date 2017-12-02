@@ -17,6 +17,7 @@ public class NewtonEx {
                 add(new Point2D.Double(9.0, 5.0));
                 //add(new Point2D.Double(10.0, 9.0));
                 add(new Point2D.Double(15.0, 11.0));
+
             }
         };
         Newton nt = new Newton(Points);
