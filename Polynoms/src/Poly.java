@@ -138,4 +138,15 @@ public class Poly extends HashMap<Integer, Double> {
         }
         return this;
     }
+
+    public double compute (double arg)
+    {
+        double result = 0.0;
+        for (Entry entry : entrySet()) {
+            double pow = (Integer)entry.getKey();
+            double val = (Double)entry.getValue();
+            result += val * Math.pow(arg, pow);
+        }
+        return result;
+    }
 }

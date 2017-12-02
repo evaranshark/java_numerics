@@ -7,6 +7,25 @@ import java.util.Collections;
  * Part of interpolation package in math
  */
 public class Hermite extends IInterpolation {
+
+    private int threads = 4;
+
+    /**
+     * Default constructor
+     */
+    Hermite() {
+        Points = null;
+    }
+
+    /**
+     * Custom threads constructor.
+     * @param threads Number of threads to compute.
+     */
+    Hermite(int threads) {
+        Points = null;
+        this.threads = threads;
+    }
+
     @Override
     public Poly run() {
         //Инициализация
