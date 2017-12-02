@@ -14,8 +14,7 @@ import java.util.concurrent.Executors;
  * @author evaran
  *
  */
-public class Lagrange {
-    ArrayList<Point2D.Double> Points;
+public class Lagrange extends IInterpolation {
     private int threads = 4;
 
     /**
@@ -43,13 +42,25 @@ public class Lagrange {
      *
      * @return Poly
      */
-    public Poly start() {
+    @Override
+    public Poly run() {
         Poly result = new Poly();
-        ArrayList<Poly> monomialsList = new ArrayList<>();
-        for (Point2D.Double point : Points)
-            monomialsList.add(Poly.mono(point.x));
+        monomialsList = new ArrayList<>();
+        fillMonomials();
+        summandsList = Collections.synchronizedList(new ArrayList<Poly>());
+        calculateSummands();
+        ArrayList<Poly> summandsDesync = new ArrayList<Poly>();
+        for (Object v : summandsList)
+            summandsDesync.add((Poly) v);
+        result = Poly.add(summandsDesync);
+        summandsList.clear();
+
+        return (Poly) result.clone();
+    }
+
+    @Override
+    void calculateSummands() {
         ExecutorService threadPool;
-        List summandsList = Collections.synchronizedList(new ArrayList<Poly>());
         ArrayList<Callable<Object>> tasks = new ArrayList<>();
         threadPool = Executors.newFixedThreadPool(threads);
         for (Poly monomial : monomialsList) {
@@ -69,8 +80,7 @@ public class Lagrange {
                         nom = point.y;
                         break;
                     }
-                lagrangian.divideBy(denom / nom);
-
+                lagrangian.multBy(nom / denom);
                 summandsList.add(lagrangian);
                 //Конец блока
                 return null;
@@ -82,12 +92,5 @@ public class Lagrange {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        ArrayList<Poly> lagrangiansDesync = new ArrayList<Poly>();
-        for (Object v : summandsList)
-            lagrangiansDesync.add((Poly) v);
-        result = Poly.add(lagrangiansDesync);
-        summandsList.clear();
-
-        return (Poly) result.clone();
     }
 }

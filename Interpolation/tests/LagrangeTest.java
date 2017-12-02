@@ -14,7 +14,7 @@ public class LagrangeTest {
         Points.add(new Point2D.Double(1.0, 1.0));
         Points.add(new Point2D.Double(2.0, 2.0));
         Lagrange lg = new Lagrange(Points);
-        Poly lgRes = lg.start();
+        Poly lgRes = lg.run();
         Poly expected = new Poly();
         expected.put(1, 1.0);
         Assert.assertEquals(expected, lgRes);

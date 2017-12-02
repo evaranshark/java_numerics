@@ -7,6 +7,11 @@ public class Poly extends HashMap<Integer, Double> {
     public Poly() {
         super();
     }
+    public Poly(int pow, double coef)
+    {
+        super();
+        put(pow, coef);
+    }
 
     /**
      * Creates monome (x - coeff).
@@ -127,9 +132,9 @@ public class Poly extends HashMap<Integer, Double> {
         return result;
     }
 
-    public Poly divideBy(double value) {
+    public Poly multBy(double value) {
         for (Entry entry : this.entrySet()) {
-            entry.setValue((double) entry.getValue() / value);
+            entry.setValue((double) entry.getValue() * value);
         }
         return this;
     }
