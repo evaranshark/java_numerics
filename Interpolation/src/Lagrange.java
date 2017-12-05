@@ -1,7 +1,6 @@
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -69,7 +68,7 @@ public class Lagrange extends IInterpolation {
                 ArrayList<Poly> otherMonomials = (ArrayList<Poly>) monomialsList.clone();
                 otherMonomials.remove(monomial);
                 Poly lagrangian = new Poly();
-                lagrangian = Poly.multiply(otherMonomials);
+                lagrangian = Poly.times(otherMonomials);
                 //TODO Dividing on coefficients
                 double denom = 1.0;
                 for (Poly mono : otherMonomials)
@@ -80,7 +79,7 @@ public class Lagrange extends IInterpolation {
                         nom = point.y;
                         break;
                     }
-                lagrangian.multBy(nom / denom);
+                lagrangian.times(nom / denom);
                 summandsList.add(lagrangian);
                 //Конец блока
                 return null;

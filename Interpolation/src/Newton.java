@@ -102,8 +102,8 @@ public class Newton extends IInterpolation {
                         break;
                     }
                     Poly summand = new Poly();
-                    summand = Poly.multiply(factors);
-                    summand.multBy(nom);
+                    summand = Poly.times(factors);
+                    summand.times(nom);
                     summandsList.add(summand);
                     return null;
             });

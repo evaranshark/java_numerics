@@ -130,7 +130,7 @@ public class PolyTest {
         Poly res = new Poly();
         Poly expected = new Poly();
         expected.put(4, 2.0);
-        res = Poly.multiply(poly1, poly2);
+        res = Poly.times(poly1, poly2);
         Assert.assertEquals("Standart  ", expected, res);
 
         //mult on zero
@@ -140,7 +140,7 @@ public class PolyTest {
         poly2.put(3, -1.0);
         res = new Poly();
         expected = new Poly();
-        res = Poly.multiply(poly1, poly2);
+        res = Poly.times(poly1, poly2);
         Assert.assertEquals("Empty on smth: ", expected, res);
 
         //mult empty on smth
@@ -149,7 +149,7 @@ public class PolyTest {
         poly2.put(3, -1.0);
         res = new Poly();
         expected = new Poly();
-        res = Poly.multiply(poly1, poly2);
+        res = Poly.times(poly1, poly2);
         Assert.assertEquals("Smth on empty: ", expected, res);
 
         //mult on empty
@@ -158,7 +158,7 @@ public class PolyTest {
         poly1.put(3, -1.0);
         res = new Poly();
         expected = new Poly();
-        res = Poly.multiply(poly1, poly2);
+        res = Poly.times(poly1, poly2);
         Assert.assertEquals("onZero: ", expected, res);
     }
 
@@ -231,7 +231,7 @@ public class PolyTest {
         Poly res = new Poly();
         Poly expected = new Poly();
         expected.put(4, 2.0);
-        res = Poly.multiply(poly1, poly2, poly3);
+        res = Poly.times(poly1, poly2, poly3);
         Assert.assertEquals("Standart  ", expected, res);
     }
 
@@ -246,7 +246,7 @@ public class PolyTest {
         Poly expected = new Poly();
         expected.put(0, 1.0);
         expected.put(1, 2.0);
-        res = Poly.multiply(polys);
+        res = Poly.times(polys);
         Assert.assertEquals("Standart  ", expected, res);
     }
 }

@@ -42,13 +42,13 @@ public class Poly extends HashMap<Integer, Double> {
     /**
      * Multiplying of number of polynomials.
      *
-     * @param args List of polynomials to multiply.
+     * @param args List of polynomials to times.
      * @return Poly
      */
-    public static Poly multiply(Poly... args) {
+    public static Poly times(Poly... args) {
         Poly result = new Poly();
         ArrayList<Poly> factors = (ArrayList<Poly>) Arrays.asList(args);
-        result = multiply(factors);
+        result = times(factors);
         return result;
     }
 
@@ -82,10 +82,10 @@ public class Poly extends HashMap<Integer, Double> {
     /**
      * Multiplying of number of polynomials sent in ArrayList.
      *
-     * @param args List of polynomials to multiply.
+     * @param args List of polynomials to times.
      * @return Poly
      */
-    public static Poly multiply(ArrayList<Poly> args) {
+    public static Poly times(ArrayList<Poly> args) {
         Poly result = new Poly();
         Queue<Poly> factorsQueue = new ArrayDeque<>();
         for (Poly p : args)
@@ -132,7 +132,7 @@ public class Poly extends HashMap<Integer, Double> {
         return result;
     }
 
-    public Poly multBy(double value) {
+    public Poly times(double value) {
         for (Entry entry : this.entrySet()) {
             entry.setValue((double) entry.getValue() * value);
         }

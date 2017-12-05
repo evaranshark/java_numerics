@@ -109,8 +109,8 @@ public class Hermite extends IInterpolation {
                         factors.add(monomialsClone.get(j));
                 nom = diffCoefficients.get(count);
                 Poly summand = new Poly();
-                summand = Poly.multiply(factors);
-                summand.multBy(nom);
+                summand = Poly.times(factors);
+                summand.times(nom);
                 summandsList.add(summand);
                 return null;
             });
