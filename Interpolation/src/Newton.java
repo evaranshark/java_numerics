@@ -22,7 +22,7 @@ public class Newton extends IInterpolation {
 
     /**
      * Custom threads constructor.
-     * @param threads Number of threads to compute.
+     * @param threads Number of threads to evaluate.
      */
     Newton(int threads) {
         Points = null;

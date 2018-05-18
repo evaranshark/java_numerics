@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Integration/Integration.iml" filepath="$PROJECT_DIR$/Integration/Integration.iml" />
       <module fileurl="file://$PROJECT_DIR$/Interpolation/Interpolation.iml" filepath="$PROJECT_DIR$/Interpolation/Interpolation.iml" />
       <module fileurl="file://$PROJECT_DIR$/Polynoms/Polynoms.iml" filepath="$PROJECT_DIR$/Polynoms/Polynoms.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/math.iml" filepath="$PROJECT_DIR$/.idea/modules/math.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/math_main.iml" filepath="$PROJECT_DIR$/.idea/modules/math_main.iml" group="math" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/math_test.iml" filepath="$PROJECT_DIR$/.idea/modules/math_test.iml" group="math" />
     </modules>
   </component>
 </project>

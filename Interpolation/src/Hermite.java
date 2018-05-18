@@ -22,7 +22,7 @@ public class Hermite extends IInterpolation {
 
     /**
      * Custom threads constructor.
-     * @param threads Number of threads to compute.
+     * @param threads Number of threads to evaluate.
      */
     Hermite(int threads) {
         Points = null;

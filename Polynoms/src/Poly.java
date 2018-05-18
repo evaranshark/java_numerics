@@ -34,7 +34,7 @@ public class Poly extends HashMap<Integer, Double> {
      */
     public static Poly add(Poly... args) {
         Poly result = new Poly();
-        ArrayList<Poly> summands = (ArrayList<Poly>) Arrays.asList(args);
+        ArrayList<Poly> summands = new ArrayList<>(Arrays.asList(args));
         result = add(summands);
         return result;
     }
@@ -47,7 +47,7 @@ public class Poly extends HashMap<Integer, Double> {
      */
     public static Poly times(Poly... args) {
         Poly result = new Poly();
-        ArrayList<Poly> factors = (ArrayList<Poly>) Arrays.asList(args);
+        ArrayList<Poly> factors = new ArrayList<>(Arrays.asList(args));
         result = times(factors);
         return result;
     }
@@ -139,7 +139,14 @@ public class Poly extends HashMap<Integer, Double> {
         return this;
     }
 
-    public double compute (double arg)
+    public static Poly minus (Poly arg) {
+        Poly result =  new Poly();
+        for (Entry entry : arg.entrySet())
+            result.put((Integer)entry.getKey(), -(Double)entry.getValue());
+        return result;
+    }
+
+    public double evaluate(double arg)
     {
         double result = 0.0;
         for (Entry entry : entrySet()) {

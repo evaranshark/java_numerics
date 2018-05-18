@@ -25,7 +25,7 @@ public class Lagrange extends IInterpolation {
 
     /**
      * Custom threads constructor.
-     * @param threads Number of threads to compute.
+     * @param threads Number of threads to evaluate.
      */
     Lagrange(int threads) {
         Points = null;
