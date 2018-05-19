@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
  * Created by evaran on 19.05.2018.
  * Part of interpolation package in math
  */
-public class EularSolverTests {
+public class EulerSolverTests {
     @Test
     public void Start() throws Exception {
         double a = 0, b=3;
         double h = 0.1;
-        EularSolver solver;
-        solver = new EularSolver(new IFunctionBehaviour() {
+        EulerSolver solver;
+        solver = new EulerSolver(new IFunctionBehaviour() {
             @Override
             public double[] eval(double x, double[] y) {
                 double[] result = new double[y.length];

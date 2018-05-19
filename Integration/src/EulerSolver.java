@@ -1,9 +1,9 @@
 /**
  * Created by evaran on 18.05.2018.
  * Part of interpolation package in math
- * Class for solving Koshi's problem by EularSolver's method.
+ * Class for solving Koshi's problem by EulerSolver's method.
  */
-public class EularSolver {
+public class EulerSolver {
     private double left;
     private double right;
     private double h;
@@ -19,7 +19,7 @@ public class EularSolver {
      * @param initials Edge conditions.
      * @param h Step size.
      */
-    public EularSolver(IFunctionBehaviour function, double left, double right, double h, double[] initials) {
+    public EulerSolver(IFunctionBehaviour function, double left, double right, double h, double[] initials) {
         setFunction(function);
         setLeft(left);
         setRight(right);
