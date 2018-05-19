@@ -3,6 +3,5 @@
  * Part of interpolation package in math
  */
 public interface IFunctionBehaviour {
-    int dimensions = 1;
-    double eval(double x);
+    double[] eval(double x, double[] y);
 }

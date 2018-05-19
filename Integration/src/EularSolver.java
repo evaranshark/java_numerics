@@ -1,9 +1,9 @@
 /**
  * Created by evaran on 18.05.2018.
  * Part of interpolation package in math
- * Class for solving Koshi's problem by Eular's method.
+ * Class for solving Koshi's problem by EularSolver's method.
  */
-public class Eular {
+public class EularSolver {
     private double left;
     private double right;
     private double h;
@@ -19,12 +19,32 @@ public class Eular {
      * @param initials Edge conditions.
      * @param h Step size.
      */
-    public Eular(IFunctionBehaviour function, double left, double right, double h, double[] initials) {
+    public EularSolver(IFunctionBehaviour function, double left, double right, double h, double[] initials) {
         setFunction(function);
         setLeft(left);
         setRight(right);
         setInitials(initials);
         setH(h);
+    }
+
+    public void start() {
+        result = initials.clone();
+        double currX = left;
+        while ((right-currX)>=h) {
+            doStep(currX);
+            currX+=h;
+        }
+        if (right > currX) {
+            h = right - currX;
+            doStep(right);
+        }
+    }
+
+    private void doStep(double x) {
+        double[] values = function.eval(x, result);
+        for (int i = 0; i < result.length; i++) {
+            result[i] += values[i] * h;
+        }
     }
 
     public double getLeft() {
@@ -67,19 +87,7 @@ public class Eular {
         this.initials = initials;
     }
 
-    public void start() {
-        result = initials.clone();
-        double currX = left;
-        while ((right-currX)>=h) {
-            currX+=h;
-            doStep(currX);
-        }
-        if (right > currX) {
-            h = right - currX;
-            doStep(right);
-        }
-    }
-    private void doStep(double x) {
-
+    public double[] getResult() {
+        return result;
     }
 }
