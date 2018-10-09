@@ -1,5 +1,5 @@
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
@@ -10,10 +10,12 @@ public class PolyTest {
     @Test
     public void print() throws Exception {
         Poly poly1 = new Poly();
-        poly1.put(1, 1.0);
+        poly1.put(4, 0.0);
+        poly1.put(0, 1.0);
+        poly1.put(3, 2.0);
         String result = Poly.toString(poly1);
-        String expected = "1=1.0\n";
-        Assert.assertEquals(expected, result);
+        String expected = "+1,000*x^0+2,000*x^3\n";
+        Assertions.assertEquals(expected, result);
     }
 
     @Test
@@ -28,7 +30,7 @@ public class PolyTest {
         expected.put(3, 2.0);
         expected.put(0, 1.0);
         res = Poly.add(poly1, poly2);
-        Assert.assertEquals("Standart  ", expected, res);
+        Assertions.assertEquals(expected, res, "Standart  ");
 
         //adding w/ one power
         poly1 = new Poly();
@@ -39,7 +41,7 @@ public class PolyTest {
         expected = new Poly();
         expected.put(3, 3.0);
         res = Poly.add(poly1, poly2);
-        Assert.assertEquals("One power: ", expected, res);
+        Assertions.assertEquals(expected, res, "One power: ");
 
         //adding w/ zero coeff
         poly1 = new Poly();
@@ -49,7 +51,7 @@ public class PolyTest {
         res = new Poly();
         expected = new Poly();
         res = Poly.add(poly1, poly2);
-        Assert.assertEquals("Empty result: ", expected, res);
+        Assertions.assertEquals(expected, res, "Empty result: ");
 
         //empty argument
         poly1 = new Poly();
@@ -59,7 +61,7 @@ public class PolyTest {
         expected = new Poly();
         expected.put(3, -1.0);
         res = Poly.add(poly1, poly2);
-        Assert.assertEquals("Empty argument: ", expected, res);
+        Assertions.assertEquals( expected, res, "Empty argument: ");
     }
 
     @Test
@@ -77,7 +79,7 @@ public class PolyTest {
         expected.put(3, 2.0);
         expected.put(0, 1.0);
         res = Poly.add(polys);
-        Assert.assertEquals("Standart  ", expected, res);
+        Assertions.assertEquals(expected, res, "Standart  ");
 
         //adding w/ one power
         poly1 = new Poly();
@@ -91,7 +93,7 @@ public class PolyTest {
         expected = new Poly();
         expected.put(3, 3.0);
         res = Poly.add(polys);
-        Assert.assertEquals("One power: ", expected, res);
+        Assertions.assertEquals(expected, res, "One power: ");
 
         //adding w/ zero coeff
         poly1 = new Poly();
@@ -104,7 +106,7 @@ public class PolyTest {
         res = new Poly();
         expected = new Poly();
         res = Poly.add(polys);
-        Assert.assertEquals("Empty result: ", expected, res);
+        Assertions.assertEquals(expected, res, "Empty result: ");
 
         //empty argument
         poly1 = new Poly();
@@ -117,7 +119,7 @@ public class PolyTest {
         expected = new Poly();
         expected.put(3, -1.0);
         res = Poly.add(polys);
-        Assert.assertEquals("Empty argument: ", expected, res);
+        Assertions.assertEquals(expected, res, "Empty argument: ");
     }
 
     @Test
@@ -131,7 +133,7 @@ public class PolyTest {
         Poly expected = new Poly();
         expected.put(4, 2.0);
         res = Poly.times(poly1, poly2);
-        Assert.assertEquals("Standart  ", expected, res);
+        Assertions.assertEquals(expected, res, "Standart  ");
 
         //mult on zero
         poly1 = new Poly();
@@ -141,7 +143,7 @@ public class PolyTest {
         res = new Poly();
         expected = new Poly();
         res = Poly.times(poly1, poly2);
-        Assert.assertEquals("Empty on smth: ", expected, res);
+        Assertions.assertEquals(expected, res, "Empty on smth: ");
 
         //mult empty on smth
         poly1 = new Poly();
@@ -150,7 +152,7 @@ public class PolyTest {
         res = new Poly();
         expected = new Poly();
         res = Poly.times(poly1, poly2);
-        Assert.assertEquals("Smth on empty: ", expected, res);
+        Assertions.assertEquals(expected, res, "Smth on empty: ");
 
         //mult on empty
         poly1 = new Poly();
@@ -159,7 +161,7 @@ public class PolyTest {
         res = new Poly();
         expected = new Poly();
         res = Poly.times(poly1, poly2);
-        Assert.assertEquals("onZero: ", expected, res);
+        Assertions.assertEquals(expected, res, "onZero: ");
     }
 
     @Test
@@ -176,7 +178,7 @@ public class PolyTest {
         expected.put(3, 1.0);
         expected.put(0, 1.0);
         res = Poly.add(poly1, poly2, poly3);
-        Assert.assertEquals("Standart  ", expected, res);
+        Assertions.assertEquals(expected, res, "Standart  ");
 
         //adding w/ one power
         poly1 = new Poly();
@@ -189,7 +191,7 @@ public class PolyTest {
         expected = new Poly();
         expected.put(3, 5.0);
         res = Poly.add(poly1, poly2, poly3);
-        Assert.assertEquals("One power: ", expected, res);
+        Assertions.assertEquals(expected, res, "One power: ");
 
         //adding w/ zero coeff
         poly1 = new Poly();
@@ -202,7 +204,7 @@ public class PolyTest {
         expected = new Poly();
         expected.put(3, -1.0);
         res = Poly.add(poly1, poly2, poly3);
-        Assert.assertEquals("Triple over zero coeff: ", expected, res);
+        Assertions.assertEquals(expected, res, "Triple over zero coeff: ");
 
         //empty argument
         poly1 = new Poly();
@@ -216,7 +218,7 @@ public class PolyTest {
         expected.put(3, 2.0);
         expected.put(15, 2.0);
         res = Poly.add(poly1, poly2, poly3);
-        Assert.assertEquals("Empty argument: ", expected, res);
+        Assertions.assertEquals(expected, res, "Empty argument: ");
     }
 
     @Test
@@ -232,7 +234,7 @@ public class PolyTest {
         Poly expected = new Poly();
         expected.put(4, 2.0);
         res = Poly.times(poly1, poly2, poly3);
-        Assert.assertEquals("Standart  ", expected, res);
+        Assertions.assertEquals(expected, res, "Standart  ");
     }
 
     @Test
@@ -247,6 +249,6 @@ public class PolyTest {
         expected.put(0, 1.0);
         expected.put(1, 2.0);
         res = Poly.times(polys);
-        Assert.assertEquals("Standart  ", expected, res);
+        Assertions.assertEquals(expected, res, "Standart  ");
     }
 }

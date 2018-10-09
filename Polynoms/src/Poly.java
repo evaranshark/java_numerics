@@ -128,7 +128,8 @@ public class Poly extends HashMap<Integer, Double> {
 
     private static String elemString(Entry entry) {
         String result = "";
-        result += String.format("%+.3f*x^%d", entry.getValue(), entry.getKey());
+        if (!entry.getValue().equals(0.0))
+            result += String.format("%+.3f*x^%d", entry.getValue(), entry.getKey());
         return result;
     }
 

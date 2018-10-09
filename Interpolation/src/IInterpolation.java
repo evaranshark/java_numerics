@@ -19,5 +19,5 @@ class IInterpolation {
     void calculateSummands(){
 
     }
-    void calculateDifferences(){};
+    void calculateDifferences(){}
 }

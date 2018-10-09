@@ -1,5 +1,5 @@
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class LagrangeTest {
         Poly lgRes = lg.run();
         Poly expected = new Poly();
         expected.put(1, 1.0);
-        Assert.assertEquals(expected, lgRes);
+        Assertions.assertEquals(expected, lgRes);
     }
 
 }
