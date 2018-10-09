@@ -19,5 +19,4 @@ public class LagrangeTest {
         expected.put(1, 1.0);
         Assertions.assertEquals(expected, lgRes);
     }
-
 }

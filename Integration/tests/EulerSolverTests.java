@@ -20,6 +20,7 @@ public class EulerSolverTests {
                 return result;
             }
         }, 0.0, 3.0, 0.1, new double[] {0, 0});
+
         solver.start();
         double[] result = solver.getResult();
         double[] expected = {2.7927089429494116, 1.2420897303832419};
